@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateLevelDto } from './dto/createChannel.dto';
-import { UpdateLevelDto } from './dto/updateLevelDto';
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
+import { CreateLevelDto } from "./dto/createChannel.dto";
+import { UpdateLevelDto } from "./dto/updateLevelDto";
 
 @Injectable()
 export class LevelService {
@@ -32,6 +32,6 @@ export class LevelService {
       where: { result: dto.oldResult },
       data: { result: dto.updatedResult },
     });
-    console.log('TROUVER : ', updatedLevel);
+    console.log("TROUVER : ", updatedLevel);
   }
 }
