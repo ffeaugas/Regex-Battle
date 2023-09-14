@@ -3,8 +3,6 @@ import { ConflictException, Injectable, UseGuards } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateUserDto } from "./dto/user.dto";
 import { hash } from "bcrypt";
-import { LoginDto } from "src/auth/dto/login.dto";
-import { AuthGuard } from "src/auth/guards/auth.guards";
 
 @Injectable()
 export class UserService {
@@ -29,8 +27,10 @@ export class UserService {
   }
 
   async getUserProfile(id: number) {
-    return await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { id: id },
     });
+    delete user?.password;
+    return user;
   }
 }

@@ -1,0 +1,9 @@
+.auth {
+  display: flex;
+  gap: clamp(0.5em, 0.5em + 2vw, 1em);
+}
+
+.auth .authLink {
+  text-decoration: none;
+  color: rgb(90, 165, 134);
+}
