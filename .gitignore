@@ -16,6 +16,9 @@ server/lerna-debug.log*
 # OS
 server/.DS_Store
 
+#SQLite DB
+server/prisma/dev.db
+
 # Tests
 server/coverage
 server/.nyc_output

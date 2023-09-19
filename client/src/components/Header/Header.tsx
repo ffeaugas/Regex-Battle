@@ -12,6 +12,7 @@ export default function Header() {
     <header className={styles.header}>
       <h1>Regex Battle</h1>
       <Link href="/">Home</Link>
+      <Link href="/tests">Tests</Link>
       {session?.user ? <Link href="/dashboard">Dashboard</Link> : undefined}
       <SignInButton />
     </header>

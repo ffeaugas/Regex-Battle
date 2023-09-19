@@ -10,9 +10,16 @@ import { AuthModule } from "./auth/auth.module";
 import { UserService } from "./user/user.service";
 import { AuthService } from "./auth/auth.service";
 import { JwtService } from "@nestjs/jwt";
+import { EventsModule } from "./events/events.module";
 
 @Module({
-  imports: [ConfigModule.forRoot(), LevelModule, UserModule, AuthModule],
+  imports: [
+    ConfigModule.forRoot(),
+    LevelModule,
+    UserModule,
+    AuthModule,
+    EventsModule,
+  ],
   controllers: [AppController, AuthController],
   providers: [AppService, PrismaService, UserService, AuthService, JwtService],
 })

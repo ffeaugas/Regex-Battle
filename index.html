@@ -12,39 +12,61 @@
         <p>content</p>
     </li> -->
   </body>
+  <script
+    src="https://cdn.socket.io/4.3.2/socket.io.min.js"
+    integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
+    crossorigin="anonymous"
+  ></script>
+
   <script>
-    async function getMessage() {
-      const res = await fetch("http://localhost:3001/level", { method: "GET" });
-      console.log(res);
-      const todos = await res.json();
-      console.log("TODOS :", todos);
+    // async function getLevels() {
+    //   const res = await fetch("http://localhost:3001/level", { method: "GET" });
+    //   console.log(res);
+    //   const todos = await res.json();
+    //   console.log("TODOS :", todos);
 
-      const ul = document.getElementById("todos");
-      todos.forEach((todo) => {
-        const li = document.createElement("li");
-        const pName = document.createElement("p");
+    //   const ul = document.getElementById("todos");
+    //   todos.forEach((todo) => {
+    //     const li = createMessage(todo.text, todo.result);
+    //     ul.appendChild(li);
+    //   });
+    // }
+
+    function createMessage(name, content) {
+      const li = document.createElement("li");
+      const pName = document.createElement("p");
+      pName.textContent = name;
+      li.appendChild(pName);
+      if (content !== "") {
         const pContent = document.createElement("p");
-        pName.textContent = todo.text;
-        pContent.textContent = todo.result;
-        li.appendChild(pName);
+        pContent.textContent = content;
         li.appendChild(pContent);
-        ul.appendChild(li);
-      });
+      }
+      return li;
     }
 
-    async function createLevel() {
-      const data = { text: "bbbefwefb", result: "bwefweb" };
-      const res = await fetch("http://localhost:3001/level", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      console.log(res);
-    }
+    // async function createLevel() {
+    //   const data = { text: "Titre", result: "content" };
+    //   const res = await fetch("http://localhost:3001/level", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
+    //   console.log(res);
+    // }
 
-    getMessage();
-    createLevel();
+    // getLevels();
+    // createLevel();
+
+    const socket = io("http://localhost:3001");
+    socket.on("connect", () => {
+      console.log("Connected");
+    });
+
+    socket.emit("events", "message de test", (response) => {
+      console.log(response);
+    });
   </script>
 </html>
