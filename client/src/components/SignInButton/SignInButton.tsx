@@ -6,7 +6,6 @@ import styles from "./SignInButton.module.css";
 
 const SignInButton = () => {
   const { data: session } = useSession();
-  // console.log("SESSION :", session); //log
   if (session?.user) {
     return (
       <div>

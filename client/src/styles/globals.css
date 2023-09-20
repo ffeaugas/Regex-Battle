@@ -1,6 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@300;500;700&family=Vollkorn&display=swap");
+
 :root {
   --header-color: rgb(245, 241, 241);
   --body-color: rgb(245, 241, 241);
+  --colorText1: rgb(15, 27, 59);
+  --colorText2: rgb(15, 27, 59);
+  --colorText3: rgb(15, 27, 59);
+
+  /* I m trying to follow the 60/30/10 color rule : 60% of a neutral color,
+  30% of contrasted color for elements, 10% of visible color for interactive parts */
+  --color60: rgb(15, 27, 59);
+  --color30: rgb(15, 27, 59);
+  --color10: rgb(15, 27, 59);
+
+  --titleFont1: "Vollkorn", serif;
+  --titleFont2: "Mukta Malar", sans-serif;
+  /* --textFont:    */
 }
 
 * {
@@ -9,11 +24,32 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: var(--body-color);
   padding: 0 clamp(1em, 1em + 2vw, 2em);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
+  font-size: clamp(2em, 2em + 3vw, 5em);
+  color: var(--colorText);
+  font-family: var(--titleFont1);
+}
+
+h2 {
   font-size: clamp(1em, 1em + 2vw, 2em);
+  color: var(--colorText);
+  font-family: var(--titleFont1);
+  letter-spacing: 0.2em;
+}
+
+p {
+  font-family: var(--titleFont2);
+  font-weight: 300;
 }

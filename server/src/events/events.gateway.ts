@@ -16,7 +16,7 @@ export class EventsGateway {
   @WebSocketServer()
   io: Server;
 
-  // private clients: Set<string> = new Set();
+  private onlineUsers: Map<string, string> = new Map();
 
   @SubscribeMessage("message")
   handleEvent(
@@ -24,20 +24,33 @@ export class EventsGateway {
     @ConnectedSocket() client: Socket
   ): any {
     console.log(data);
-    this.io.emit("message", data);
-
-    // console.log("CLIENTTTTTTTTTTTTTTTTTTTT", client);
+    this.io.emit("message", `${client.id}: ${data}`);
     return "Bien recu chef";
   }
 
-  handleConnection(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() username: string
-  ) {
-    // console.log(`Un nouvel utilisateur s'est connecté : ${client.id}`);
+  @SubscribeMessage("userConnection")
+  handleUserConnection(
+    @MessageBody() username: string,
+    @ConnectedSocket() client: Socket
+  ): any {
+    console.log("user :", `${client.id}: ${username}`);
+    this.onlineUsers.set(username, client.id);
+    console.log("Current UserMap : ", this.onlineUsers);
+    this.io.emit("onlineUsersUpdate", this.onlineUsers);
+    return;
+  }
+
+  handleConnection(@ConnectedSocket() client: Socket) {
+    console.log(`Un nouvel utilisateur s'est connecté : ${client.id}`);
   }
 
   handleDisconnect(client: Socket) {
-    // console.log(`Un utilisateur est parti : ${client.id}`);
+    console.log(`Un utilisateur est parti : ${client.id}`);
+    for (const [key, value] of this.onlineUsers)
+      if (value === client.id) {
+        this.onlineUsers.delete(key);
+        break;
+      }
+    console.log("Current UserMap : ", this.onlineUsers);
   }
 }
