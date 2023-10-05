@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header/Navbar";
 import styles from "./page.module.css";
 import { useState } from "react";
 

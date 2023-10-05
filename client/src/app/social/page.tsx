@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "@/components/Header/Header";
+import Navbar from "@/components/Navbar/Navbar";
 import SocketContext from "@/context/socket.context";
 import { useContext, useEffect, useState } from "react";
 
@@ -10,14 +10,14 @@ export default function Social() {
   const [currentMessage, setCurrentMessage] = useState("");
   const { serverSocket } = useContext(SocketContext);
 
-  useEffect(() => {
-    // const s = io("http://localhost:3001");
-    // setSocket(s);
+  // useEffect(() => {
+  //   // const s = io("http://localhost:3001");
+  //   // setSocket(s);
 
-    return () => {
-      serverSocket.disconnect();
-    };
-  }, []);
+  //   return () => {
+  //     serverSocket.disconnect();
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (!serverSocket) return;
@@ -33,7 +33,7 @@ export default function Social() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <div>
         {messages.map((message, index) => (
           <p key={index}>{message}</p>

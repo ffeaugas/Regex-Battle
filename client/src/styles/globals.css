@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@300;500;700&family=Vollkorn&display=swap");
-
+@import url("https://db.onlinewebfonts.com/c/64103e95b3ca5ab4ebf815b4f19e00f2?family=Lenora+Premium+Bold");
 :root {
   --header-color: rgb(245, 241, 241);
-  --body-color: rgb(245, 241, 241);
+  --body-color: rgb(243, 237, 237);
   --colorText1: rgb(15, 27, 59);
   --colorText2: rgb(15, 27, 59);
   --colorText3: rgb(15, 27, 59);
+  --componentColor1: rgb(255, 255, 255);
 
   /* I m trying to follow the 60/30/10 color rule : 60% of a neutral color,
   30% of contrasted color for elements, 10% of visible color for interactive parts */
@@ -15,6 +16,7 @@
 
   --titleFont1: "Vollkorn", serif;
   --titleFont2: "Mukta Malar", sans-serif;
+  --titleFont3: "Lenora Premium Bold";
   /* --textFont:    */
 }
 
@@ -37,19 +39,20 @@ body {
 }
 
 h1 {
-  font-size: clamp(2em, 2em + 3vw, 5em);
+  font-size: clamp(1.4em, 1.4em + 3vw, 5em);
   color: var(--colorText);
-  font-family: var(--titleFont1);
+  font-family: var(--titleFont3);
 }
 
 h2 {
-  font-size: clamp(1em, 1em + 2vw, 2em);
+  font-size: clamp(0.8em, 0.8em + 2vw, 1.5em);
   color: var(--colorText);
-  font-family: var(--titleFont1);
+  font-family: var(--titleFont3);
   letter-spacing: 0.2em;
 }
 
 p {
+  font-size: clamp(0.4em, 0.4em + 2vw, 1.1em);
   font-family: var(--titleFont2);
   font-weight: 300;
 }

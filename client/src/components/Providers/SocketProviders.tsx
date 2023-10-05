@@ -18,7 +18,7 @@ const SocketProviders = ({ children }: ProvidersProps) => {
   setTimeout(() => {
     if (session?.user) {
       console.log("Connecting as ", session.user.name);
-      serverSocket.emit("userConnection", session.user.name);
+      serverSocket?.emit("userConnection", session.user.name);
     } else console.log("Connecting as visitor");
   }, 300);
 

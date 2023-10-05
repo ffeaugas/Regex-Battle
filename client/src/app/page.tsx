@@ -1,11 +1,11 @@
+import Navbar from "@/components/Navbar/Navbar";
 import styles from "@/styles/page.module.css";
-import Header from "@/components/Header/Header";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <Header />
+      <Navbar />
       <main className={styles.mainFrame}>
         <h1>RegexBattle</h1>
         <p>Improve your Regex skills by challenging your friends</p>

@@ -1,8 +1,16 @@
-.header {
-  background-color: var(--header-color);
+.navbar {
+  background-color: var(--navbar-color);
   display: flex;
   justify-content: space-between;
   padding-top: clamp(0.5em, 0.5em + 2vw, 1em);
   padding-bottom: clamp(0.5em, 0.5em + 2vw, 1em);
   align-items: center;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:visited {
+  color: var(--titleColor1);
 }
