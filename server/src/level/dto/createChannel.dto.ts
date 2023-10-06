@@ -1,17 +1,52 @@
-import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNotEmpty, IsString, MaxLength } from "class-validator";
 
 export class CreateLevelDto {
+  @ApiProperty({ description: "Title of the Level" })
   @IsString()
   @IsNotEmpty()
-  @MaxLength(15, {
-    message: 'text should be max 15 characters. ',
+  @MaxLength(60, {
+    message: "text should be max 60 characters. ",
   })
-  result: string;
+  title: string;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   @MaxLength(15, {
-    message: 'text should be max 15 characters. ',
+    message: "text should be max 15 characters. ",
   })
-  text: string;
+  type: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(120, {
+    message: "text should be max 120 characters. ",
+  })
+  statement: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(500, {
+    message: "text should be max 500 characters. ",
+  })
+  input: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(500, {
+    message: "text should be max 500 characters. ",
+  })
+  output: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(100, {
+    message: "text should be max 100 characters. ",
+  })
+  solution: string;
 }

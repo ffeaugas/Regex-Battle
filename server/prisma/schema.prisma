@@ -14,9 +14,12 @@ model Level {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
-  text      String?
-  result    String?
-  completed Boolean  @default(false)
+  title     String   @unique
+  type      String
+  statement String
+  input     String
+  output    String
+  solution  String
 }
 
 model User {

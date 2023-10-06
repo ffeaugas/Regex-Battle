@@ -1,17 +1,17 @@
-import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsString } from "class-validator";
 
 export class UpdateLevelDto {
   @IsString()
   @IsNotEmpty()
-  @MaxLength(15, {
-    message: 'result should be max 15 characters. ',
-  })
-  oldResult: string;
+  title: string;
 
   @IsString()
   @IsNotEmpty()
-  @MaxLength(15, {
-    message: 'result should be max 15 characters. ',
-  })
-  updatedResult: string;
+  updatedField: string;
+
+  formField: string;
 }
+
+//TODOS
+//FormField as to be an enum once Postgres is setup because it can only be title, type, statement etc
+//The string size requirement as to depend on the formField
