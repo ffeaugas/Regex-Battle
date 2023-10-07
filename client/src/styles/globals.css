@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@300;500;700&family=Vollkorn&display=swap");
 @import url("https://db.onlinewebfonts.com/c/64103e95b3ca5ab4ebf815b4f19e00f2?family=Lenora+Premium+Bold");
+@import url("https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@300;500;700&family=Poppins:ital,wght@0,200;0,300;0,600;1,100&family=Vollkorn&display=swap");
+
 :root {
   --header-color: rgb(245, 241, 241);
   --body-color: rgb(243, 237, 237);
@@ -17,6 +19,7 @@
   --titleFont1: "Vollkorn", serif;
   --titleFont2: "Mukta Malar", sans-serif;
   --titleFont3: "Lenora Premium Bold";
+  --textFont1: "Poppins", sans-serif;
   /* --textFont:    */
 }
 
@@ -51,8 +54,20 @@ h2 {
   letter-spacing: 0.2em;
 }
 
-p {
-  font-size: clamp(0.4em, 0.4em + 2vw, 1.1em);
-  font-family: var(--titleFont2);
+h3 {
+  font-size: clamp(0.5em, 0.5em + 2vw, 1.2em);
+  font-family: var(--titleFont3);
+  font-weight: 400;
+}
+
+p,
+label,
+input[type="text"],
+textarea,
+option,
+select,
+button {
+  font-size: clamp(0.2em, 0.2em + 2vw, 0.8em);
+  font-family: var(--textFont1);
   font-weight: 300;
 }

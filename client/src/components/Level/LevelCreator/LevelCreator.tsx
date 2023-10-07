@@ -1,26 +1,9 @@
 "use client";
 
+import { ChangeEvent, LevelForm, LevelType } from "..";
 import styles from "./LevelCreator.module.css";
 import { FormEvent, ReactNode, useState } from "react";
-
-enum LevelType {
-  MATCH = "Match",
-}
-
-type LevelCreatorProps = {};
-
-type LevelForm = {
-  title: string;
-  type: LevelType;
-  statement: string;
-  input: string;
-  output: string;
-  solution: string;
-};
-
-type ChangeEvent = React.ChangeEvent<
-  HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
->;
+import { createLevel } from "../utils";
 
 const defaultForm: LevelForm = {
   title: "Where the hell are my keys ?!",
@@ -32,17 +15,18 @@ const defaultForm: LevelForm = {
   solution: "d{a,b}",
 };
 
-export default function LevelCreator({}: LevelCreatorProps): ReactNode {
+export default function LevelCreator(): ReactNode {
   const [form, setForm] = useState<LevelForm>(defaultForm);
 
-  function handleChange(e: ChangeEvent): void {
+  function handleChange(e: ChangeEvent) {
     const { name, value } = e.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("FORM : ", form);
+    const errorMessage: string | null = await createLevel(form);
+    console.log(errorMessage);
   }
 
   return (

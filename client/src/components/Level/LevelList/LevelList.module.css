@@ -1,0 +1,64 @@
+.levelList {
+  background-color: var(--componentColor1);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 40%;
+}
+
+.levelList p {
+  text-wrap: wrap;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+.levelItem {
+  background-color: antiquewhite;
+  padding: 5px;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.title:hover p {
+  color: rgb(100, 127, 129);
+}
+
+.active p {
+  color: rgb(100, 127, 129);
+}
+
+.arrow {
+  transform: rotate(90deg);
+  transition: 0.3s;
+  user-select: none;
+  color: #1d47b9;
+}
+
+.active .arrow {
+  transform: rotate(270deg);
+  transition: 0.3s;
+}
+
+.content {
+  /* max-height: 0px; */
+  transition: max-height 1s ease;
+}
+
+/* .levelList * {
+  border: pink solid 1px;
+} */

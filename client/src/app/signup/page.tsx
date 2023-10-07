@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "@/components/Header/Navbar";
+import Header from "@/components/Navbar/Navbar";
 import styles from "./page.module.css";
 import { useState } from "react";
 
@@ -24,7 +24,7 @@ export default function SignUp() {
 
   async function handleSubmit(evt: any) {
     evt.preventDefault();
-    console.log("ACCES TO : ", `${process.env.BACKEND_URL} /auth/register`);
+    console.log("ACCES TO : ", "http://localhost:3001/auth/register");
     const res = await fetch("http://localhost:3001/auth/register", {
       method: "POST",
       headers: {
