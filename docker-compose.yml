@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+  # Node.js + Nest.js + Prisma Backend
+  server:
+    hostname: nestjs
+    networks:
+      network:
+        ipv4_address: 10.5.0.3
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/server/app/node_modules
+    ports:
+      - 3001:3001
+      #prisma studio
+      - 5555:5555
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: mysql://root:motdepassachanger@10.5.0.4:3306/nomachanger
+
+  # MySQL Database
+  db:
+    image: mysql:5.7
+    hostname: db
+    networks:
+      network:
+        ipv4_address: 10.5.0.4
+    environment:
+      MYSQL_ROOT_PASSWORD: motdepassachanger
+      MYSQL_DATABASE: nomachanger
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
