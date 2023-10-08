@@ -29,26 +29,28 @@ export default function LevelList() {
 function LevelItem({ level }: LevelItemProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className={styles.levelItem}>
-      <div>
-        <div
-          className={`${styles.title}  ${isOpen ? styles.active : ""}`}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <p>
-            <b>{level.title}</b>
-          </p>
-          <p className={`${styles.arrow}`}>&#62;</p>
+    <div className={`${styles.levelItem}  ${isOpen ? styles.active : ""}`}>
+      <div className={styles.title} onClick={() => setIsOpen(!isOpen)}>
+        <p>{level.title}</p>
+        <p className={`${styles.arrow}`}>&#62;</p>
+      </div>
+      <div className={styles.content}>
+        <div>
+          <p>{level.statement}</p>
+          <p>{level.type}</p>
+          <p>{level.input}</p>
+          <p>{level.output}</p>
         </div>
-        {isOpen ? (
-          <div className={styles.content}>
-            <p>{level.statement}</p>
-            <p>{level.type}</p>
-            <p>{level.input}</p>
-            <p>{level.output}</p>
-          </div>
-        ) : null}
       </div>
     </div>
   );
 }
+
+// {isOpen ? (
+//   <div className={styles.content}>
+//     <p>{level.statement}</p>
+//     <p>{level.type}</p>
+//     <p>{level.input}</p>
+//     <p>{level.output}</p>
+//   </div>
+// ) : null}

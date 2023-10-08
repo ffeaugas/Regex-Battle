@@ -10,12 +10,14 @@ export async function createLevel(form: LevelForm): string | null {
       },
       body: JSON.stringify(form),
     });
+    if (!res.ok) {
+      const error = await res.json();
+      return error.message;
+    }
     const parsedRes = await res.json();
-    console.log(parsedRes);
     return null;
-  } catch (error) {
-    console.log("Error : ", error);
-    return error;
+  } catch (e) {
+    return "Server error";
   }
 }
 
@@ -29,8 +31,8 @@ export async function getLevels(): Promise<Level[]> {
     });
     const levels = await res.json();
     return levels;
-  } catch (error) {
-    console.log("Error : ", error);
+  } catch (e) {
+    console.log("Error : ", e);
     return [];
   }
 }

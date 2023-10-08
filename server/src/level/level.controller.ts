@@ -15,6 +15,7 @@ import { AuthGuard } from "src/auth/guards/auth.guards";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
+  ApiForbiddenResponse,
   ApiResponse,
   ApiTags,
 } from "@nestjs/swagger";
@@ -33,6 +34,7 @@ export class LevelController {
 
   @ApiResponse({ status: 201, description: "Level successfully created" })
   @ApiConflictResponse({ description: "Level title already used" })
+  @ApiForbiddenResponse({ description: "Invalid regex solution" })
   @Post()
   createLevel(@Body() dto: CreateLevelDto) {
     return this.levelService.createLevel(dto);

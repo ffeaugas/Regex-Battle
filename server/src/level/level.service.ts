@@ -1,8 +1,13 @@
-import { ConflictException, Injectable } from "@nestjs/common";
+import {
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+} from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateLevelDto } from "./dto/createChannel.dto";
 import { UpdateLevelDto } from "./dto/updateLevelDto";
 import { Level } from "@prisma/client";
+import { isRegexSolutionCorrect } from "./utils";
 
 @Injectable()
 export class LevelService {
@@ -10,7 +15,6 @@ export class LevelService {
 
   async getLevels(): Promise<Level[]> {
     const levels = await this.prisma.level.findMany();
-    console.log(levels);
     return levels;
   }
 
@@ -20,6 +24,10 @@ export class LevelService {
     });
     if (isExistingLevel)
       throw new ConflictException("This level title already exists");
+    if (!isRegexSolutionCorrect(dto.type, dto.input, dto.output, dto.solution))
+      throw new ForbiddenException(
+        "Solution provided doesn't match the output"
+      );
     const createDefaultLevel = await this.prisma.level.create({
       data: {
         title: dto.title,

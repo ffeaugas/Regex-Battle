@@ -10,13 +10,14 @@ const defaultForm: LevelForm = {
   type: LevelType.MATCH,
   statement: "Write a Regex that matches John's key",
   input:
-    "Oh god I lost my bike lock key in this heap of old keys... what do we have here ? Key-JNNOOOJJOOOOONNNNNNOOOHJ Key-JNNOOOJJOOOOONNNNNNUOOHJ Key-JNNQOOJJOOOOONNNNNNUOOHJ",
+    "Key-JNNOOOJJOOOOONNNNNNOOOHJ\nKey-JNNOOOJJOOOOONNNNNNUOOHJ\nKey-JNNQOOJJOOOOONNNNNNUOOHJ",
   output: "Key-JNNOOOJJOOOOONNNNNNOOOHJ",
-  solution: "d{a,b}",
+  solution: "Key-[JOHN]*$",
 };
 
 export default function LevelCreator(): ReactNode {
   const [form, setForm] = useState<LevelForm>(defaultForm);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   function handleChange(e: ChangeEvent) {
     const { name, value } = e.target;
@@ -26,7 +27,9 @@ export default function LevelCreator(): ReactNode {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const errorMessage: string | null = await createLevel(form);
-    console.log(errorMessage);
+    if (errorMessage) setErrorMessage(errorMessage);
+    else setErrorMessage("");
+    console.log("error message :", errorMessage);
   }
 
   return (
@@ -75,7 +78,12 @@ export default function LevelCreator(): ReactNode {
           value={form.solution}
           onChange={handleChange}
         ></input>
-        <button type="submit">Submit</button>
+        <div className={styles.submit}>
+          <button type="submit">Submit</button>
+          <p>
+            <i>{errorMessage}</i>
+          </p>
+        </div>
       </form>
     </div>
   );
