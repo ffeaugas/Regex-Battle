@@ -1,5 +1,24 @@
 version: "3.9"
+
 services:
+  #Next.js
+  client:
+    hostname: nextjs
+    networks:
+      network:
+        ipv4_address: 10.5.0.2
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - server
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+
   # Node.js + Nest.js + Prisma Backend
   server:
     hostname: nestjs
@@ -18,8 +37,12 @@ services:
       - 5555:5555
     depends_on:
       - db
+      # db:
+      #   condition: service_healthy
+      #   restart: true
     environment:
       DATABASE_URL: mysql://root:motdepassachanger@10.5.0.4:3306/nomachanger
+    restart: always
 
   # MySQL Database
   db:
@@ -31,7 +54,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: motdepassachanger
       MYSQL_DATABASE: nomachanger
-    restart: unless-stopped
+    volumes:
+      - ./data/db:/var/lib/mysql
+    restart: always
     ports:
       - "3306:3306"
 
