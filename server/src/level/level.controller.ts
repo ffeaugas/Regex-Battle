@@ -3,13 +3,14 @@ import {
   Controller,
   Delete,
   Get,
+  Param,
   Patch,
   Post,
   UseGuards,
 } from "@nestjs/common";
 import { LevelService } from "./level.service";
-import { CreateLevelDto } from "./dto/createChannel.dto";
-import { UpdateLevelDto } from "./dto/updateLevelDto";
+import { LevelDTO } from "./dto/level.dto";
+import { LevelUpdateDTO } from "./dto/level-update.dto";
 import { Level } from "@prisma/client";
 import { AuthGuard } from "src/auth/guards/auth.guards";
 import {
@@ -21,32 +22,34 @@ import {
 } from "@nestjs/swagger";
 
 @ApiTags("Level")
-@ApiBearerAuth()
-@UseGuards(AuthGuard)
+// @ApiBearerAuth()
+// @UseGuards(AuthGuard)
 @Controller("level")
 export class LevelController {
   constructor(private readonly levelService: LevelService) {}
 
   @Get()
-  getlevels(): Promise<Level[]> {
-    return this.levelService.getLevels();
+  getLevels(): Promise<Level[]> {
+    return this.levelService.getAll();
   }
 
   @ApiResponse({ status: 201, description: "Level successfully created" })
   @ApiConflictResponse({ description: "Level title already used" })
   @ApiForbiddenResponse({ description: "Invalid regex solution" })
   @Post()
-  createLevel(@Body() dto: CreateLevelDto) {
-    return this.levelService.createLevel(dto);
+  createLevel(@Body() level: LevelDTO) {
+    return this.levelService.createOne(level);
   }
 
-  @Delete()
-  deleteAll() {
-    return this.levelService.deleteAll();
+  @Delete(":/id")
+  deleteLevel(
+    @Param("id") id: number
+  ): Promise<{ deleted: boolean; message?: string }> {
+    return this.levelService.deleteOne(id);
   }
 
-  @Patch()
-  updateLevel(@Body() dto: UpdateLevelDto) {
-    return this.levelService.updateLevel(dto);
+  @Patch(":/id")
+  updateLevel(@Param("id") id: number, @Body() level: LevelUpdateDTO) {
+    return this.levelService.updateOne(id, level);
   }
 }

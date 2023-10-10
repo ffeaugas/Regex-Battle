@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString, MaxLength } from "class-validator";
 
-export class CreateLevelDto {
+export class LevelDTO {
   @ApiProperty({ description: "Title of the Level" })
   @IsString()
   @IsNotEmpty()
