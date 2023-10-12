@@ -50,8 +50,8 @@ export class LevelService {
 
   async updateOne(id: number, level: LevelUpdateDTO): Promise<Level> {
     return this.prisma.level.update({
-      data: level,
       where: { id },
+      data: level,
     });
   }
 }
