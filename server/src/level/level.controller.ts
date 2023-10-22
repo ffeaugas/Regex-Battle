@@ -33,6 +33,11 @@ export class LevelController {
     return this.levelService.getAll();
   }
 
+  @Get("/tutorial")
+  getTutorialLevels(): Promise<Level[]> {
+    return this.levelService.getTutorial();
+  }
+
   @ApiResponse({ status: 201, description: "Level successfully created" })
   @ApiConflictResponse({ description: "Level title already used" })
   @ApiForbiddenResponse({ description: "Invalid regex solution" })

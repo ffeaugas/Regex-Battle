@@ -18,6 +18,13 @@ export class LevelService {
     return levels;
   }
 
+  async getTutorial(): Promise<Level[]> {
+    const levels = await this.prisma.level.findMany({
+      where: { tutorial: true },
+    });
+    return levels;
+  }
+
   async createOne(level: LevelDTO) {
     const isExistingLevel = await this.prisma.level.findUnique({
       where: { title: level.title },
