@@ -1,0 +1,31 @@
+.cheatSheet {
+  background-color: rgba(118, 177, 128, 0.767);
+  width: 60%;
+  height: 60%;
+  z-index: 2;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  padding: 20px 12px;
+  gap: 15px;
+  border-radius: 5px;
+  -webkit-box-shadow: 4px 8px 12px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 12px -3px rgba(0, 0, 0, 0.27);
+}
+
+.cheatSheetButton {
+  width: 60px;
+  height: 60px;
+  background-color: rgb(87, 192, 104);
+  z-index: 1;
+  position: absolute;
+  bottom: 3%;
+  left: 3%;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 4px 8px 12px -3px rgba(0, 0, 0, 0.17);
+  box-shadow: 4px 8px 12px -3px rgba(0, 0, 0, 0.17);
+}

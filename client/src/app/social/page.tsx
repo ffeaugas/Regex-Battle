@@ -5,25 +5,19 @@ import SocketContext from "@/context/socket.context";
 import { useContext, useEffect, useState } from "react";
 
 export default function Social() {
-  // const [socket, setSocket] = useState<typeof Socket>(null);
-  const [messages, setMessages] = useState([]);
-  const [currentMessage, setCurrentMessage] = useState("");
+  const [messages, setMessages] = useState<string[]>([]);
+  const [currentMessage, setCurrentMessage] = useState<string>("");
   const { serverSocket } = useContext(SocketContext);
 
-  // useEffect(() => {
-  //   // const s = io("http://localhost:3001");
-  //   // setSocket(s);
-
-  //   return () => {
-  //     serverSocket.disconnect();
-  //   };
-  // }, []);
+  function listenMessages(message: string) {
+    setMessages((prevMessages: string[]) => [...prevMessages, message]);
+  }
 
   useEffect(() => {
     if (!serverSocket) return;
-    serverSocket.on("message", (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
+    serverSocket.on("message", listenMessages);
+
+    // return serverSocket.off("message", listenMessages);
   }, [serverSocket]);
 
   const sendMessage = () => {

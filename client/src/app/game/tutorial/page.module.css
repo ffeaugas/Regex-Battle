@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+  height: 100vh;
+}
+
+.cheatSheetButton {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  z-index: 1;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}

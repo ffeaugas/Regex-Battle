@@ -1,5 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, MaxLength } from "class-validator";
+import {
+  IsBoolean,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+} from "class-validator";
+import { LevelType } from "src/types";
 
 export class LevelDTO {
   @ApiProperty({ description: "Title of the Level" })
@@ -11,12 +18,12 @@ export class LevelDTO {
   title: string;
 
   @ApiProperty()
-  @IsString()
+  @IsEnum(LevelType)
   @IsNotEmpty()
   @MaxLength(15, {
     message: "text should be max 15 characters. ",
   })
-  type: string;
+  type: LevelType;
 
   @ApiProperty()
   @IsString()
