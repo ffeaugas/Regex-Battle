@@ -21,3 +21,88 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.radioInputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.2rem;
+  background-color: #eee;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  padding: 0.15rem;
+  width: 300px;
+  font-size: 14px;
+  margin: 0 auto;
+}
+
+.radioInputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radioInputs .radio input {
+  display: none;
+}
+
+.radioInputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  border: none;
+  padding: 0.2rem 0;
+  color: rgb(0, 0, 0);
+  transition: all 0.15s ease-in-out;
+}
+
+.radioInputs .radio input[type="radio"]:not(:checked) + .name:hover {
+  color: var(--componentColor3);
+}
+
+.radioInputs .radio input:checked + .name {
+  background-color: var(--componentColor3);
+  font-weight: 600;
+}
+
+.levelCreator input[type="text"],
+.levelCreator textarea {
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 4px;
+  resize: none;
+  color: #000000;
+  border: 1px solid #414141;
+  background-color: transparent;
+}
+
+.levelCreator textarea {
+  height: 96px;
+}
+
+.levelCreator textarea:focus,
+.levelCreator input[type="text"]:focus {
+  outline: none;
+  border-color: var(--componentColor3);
+}
+
+.levelCreator .submit {
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.levelCreator .submit button {
+  margin: 0 auto;
+}
+
+.successMessage b {
+  color: green;
+}
+
+.errorMessage b {
+  color: red;
+}

@@ -1,11 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsBoolean,
-  IsEnum,
-  IsNotEmpty,
-  IsString,
-  MaxLength,
-} from "class-validator";
+import { IsEnum, IsNotEmpty, IsString, MaxLength } from "class-validator";
 import { LevelType } from "src/types";
 
 export class LevelDTO {

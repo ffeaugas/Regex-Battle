@@ -3,11 +3,17 @@ import { LevelController } from "./level.controller";
 import { LevelService } from "./level.service";
 import { LevelDTO } from "./dto/level.dto";
 import { Level } from "@prisma/client";
+import { LevelType } from "src/types";
 
-const testLevels: LevelDTO[] = [
+class LevelDTOWithType extends LevelDTO {
+  tutorial: boolean;
+}
+
+const testLevels: LevelDTOWithType[] = [
   {
     title: "TestLevel1",
-    type: "Match",
+    type: LevelType.MATCHONE,
+    tutorial: false,
     statement: "Do smthing",
     input: "A sentence with key",
     output: "key",
@@ -15,7 +21,8 @@ const testLevels: LevelDTO[] = [
   },
   {
     title: "TestLevel2",
-    type: "Match",
+    type: LevelType.MATCHONE,
+    tutorial: false,
     statement: "Do smthingggg",
     input: "A sentence with ku",
     output: "ku",
@@ -46,6 +53,7 @@ describe("LevelController", () => {
                   id: testLevelId,
                   createdAt: testDate,
                   updatedAt: testDate,
+                  tutorial: false,
                   ...level,
                 })
               ),
@@ -56,6 +64,7 @@ describe("LevelController", () => {
                   id,
                   updatedAt: testDate,
                   createdAt: testDate,
+                  tutorial: false,
                   ...level,
                 })
               ),
@@ -80,7 +89,8 @@ describe("LevelController", () => {
       await expect(controller.getLevels()).resolves.toEqual([
         {
           title: "TestLevel1",
-          type: "Match",
+          type: LevelType.MATCHONE,
+          tutorial: false,
           statement: "Do smthing",
           input: "A sentence with key",
           output: "key",
@@ -88,7 +98,8 @@ describe("LevelController", () => {
         },
         {
           title: "TestLevel2",
-          type: "Match",
+          type: LevelType.MATCHONE,
+          tutorial: false,
           statement: "Do smthingggg",
           input: "A sentence with ku",
           output: "ku",
@@ -102,7 +113,7 @@ describe("LevelController", () => {
     it("shoudl create a level", async () => {
       const newLevel: LevelDTO = {
         title: "TestLevel1",
-        type: "Match",
+        type: LevelType.MATCHONE,
         statement: "Do smthing",
         input: "A sentence with key",
         output: "key",
@@ -112,6 +123,7 @@ describe("LevelController", () => {
         id: testLevelId,
         createdAt: testDate,
         updatedAt: testDate,
+        tutorial: false,
         ...newLevel,
       });
     });
@@ -121,7 +133,7 @@ describe("LevelController", () => {
     it("should update a level", async () => {
       const updatedLevel: LevelDTO = {
         title: "TestLevel1",
-        type: "Match",
+        type: LevelType.MATCHONE,
         statement: "Do smthing",
         input: "A sentence with key",
         output: "key",
@@ -133,6 +145,7 @@ describe("LevelController", () => {
         id: testLevelId,
         createdAt: testDate,
         updatedAt: testDate,
+        tutorial: false,
         ...updatedLevel,
       });
     });

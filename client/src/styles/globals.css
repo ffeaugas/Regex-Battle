@@ -9,6 +9,8 @@
   --colorText2: rgb(15, 27, 59);
   --colorText3: rgb(15, 27, 59);
   --componentColor1: rgb(255, 255, 255);
+  --componentColor2: rgba(118, 177, 128, 0.767);
+  --componentColor3: rgb(87, 192, 104);
 
   --titleFont1: "Vollkorn", serif;
   --titleFont2: "Mukta Malar", sans-serif;
@@ -16,7 +18,6 @@
   --titleFont4: "Lenora Premium Bold";
 
   --textFont1: "Poppins", sans-serif;
-  /* --textFont:    */
 }
 
 * {
@@ -80,7 +81,7 @@ button {
   border-radius: 15px;
   color: #212121;
   z-index: 1;
-  background: #e8e8e8;
+  background: var(--componentColor3);
   position: relative;
   font-weight: 500;
   font-size: clamp(0.2em, 0.2em + 2vw, 0.8em);

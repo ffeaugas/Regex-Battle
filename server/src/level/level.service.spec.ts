@@ -3,6 +3,7 @@ import { LevelService } from "./level.service";
 import { PrismaService } from "src/prisma/prisma.service";
 import { Level } from "@prisma/client";
 import { ForbiddenException } from "@nestjs/common";
+import { LevelType } from "src/types";
 
 const dateMock: Date = new Date();
 
@@ -12,7 +13,8 @@ const levelArray: Level[] = [
     createdAt: dateMock,
     updatedAt: dateMock,
     title: "TestLevel1",
-    type: "Match",
+    type: LevelType.MATCHONE,
+    tutorial: false,
     statement: "Do smthing",
     input: "A sentence with key",
     output: "key",
@@ -23,7 +25,8 @@ const levelArray: Level[] = [
     createdAt: dateMock,
     updatedAt: dateMock,
     title: "TestLevel2",
-    type: "Match",
+    type: LevelType.MATCHONE,
+    tutorial: false,
     statement: "Do smthingggg",
     input: "A sentence with ku",
     output: "ku",
@@ -78,7 +81,7 @@ describe("LevelService", () => {
     it("should successfully create a level", async () => {
       const level = await service.createOne({
         title: "TestLevel1",
-        type: "Match",
+        type: LevelType.MATCHONE,
         statement: "Do smthing",
         input: "A sentence with key",
         output: "key",
@@ -91,7 +94,7 @@ describe("LevelService", () => {
       try {
         await service.createOne({
           title: "TestLevel1",
-          type: "Match",
+          type: LevelType.MATCHONE,
           statement: "Do smthing",
           input: "A sentence with key",
           output: "key",
@@ -109,7 +112,6 @@ describe("LevelService", () => {
       const updatedLevel = await service.updateOne(1, {
         title: "UpdatedLevel1",
       });
-      // console.warn("UPDATED LEVEL :", updatedLevel);
       expect(updatedLevel).toEqual(updateLevel);
     });
   });

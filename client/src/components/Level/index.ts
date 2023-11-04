@@ -3,7 +3,9 @@
 /*---------------------------------------------------------------------------*/
 
 export enum LevelType {
-  MATCH = "Match",
+  MATCHONE = "MATCHONE",
+  MATCHALL = "MATCHALL",
+  REPLACE = "REPLACE",
 }
 
 /*---------------------------------------------------------------------------*/
@@ -22,6 +24,11 @@ export type LevelForm = {
 export interface Level extends LevelForm {
   id: string;
 }
+
+export type Feedback = {
+  status: "FAILURE" | "SUCCESS";
+  message: string;
+};
 
 export type ChangeEvent = React.ChangeEvent<
   HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement

@@ -11,8 +11,6 @@ import { Socket } from "socket.io-client";
 export default function Navbar() {
   const { data: session } = useSession();
 
-  useEffect(() => {}, []);
-
   return (
     <header className={styles.navbar}>
       <Link className={styles.link} href="/">

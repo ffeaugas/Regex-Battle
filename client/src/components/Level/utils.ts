@@ -1,6 +1,6 @@
-import { Level, LevelForm } from ".";
+import { Feedback, Level, LevelForm } from ".";
 
-export async function createLevel(form: LevelForm): string | null {
+export async function createLevel(form: LevelForm): Feedback | null {
   try {
     const res = await fetch("http://localhost:3001/level", {
       method: "POST",
@@ -12,12 +12,11 @@ export async function createLevel(form: LevelForm): string | null {
     });
     if (!res.ok) {
       const error = await res.json();
-      return error.message;
+      return { status: "FAILURE", message: error.message };
     }
-    const parsedRes = await res.json();
     return null;
   } catch (e) {
-    return "Server error";
+    return { status: "FAILURE", message: "Server error" };
   }
 }
 

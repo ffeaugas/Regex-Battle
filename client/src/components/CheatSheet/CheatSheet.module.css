@@ -1,5 +1,5 @@
 .cheatSheet {
-  background-color: rgba(118, 177, 128, 0.767);
+  background-color: var(--componentColor2);
   width: 60%;
   height: 60%;
   z-index: 2;
@@ -16,7 +16,7 @@
 .cheatSheetButton {
   width: 60px;
   height: 60px;
-  background-color: rgb(87, 192, 104);
+  background-color: var(--componentColor3);
   z-index: 1;
   position: absolute;
   bottom: 3%;

@@ -17,7 +17,7 @@ model Level {
   updatedAt DateTime  @updatedAt
   title     String    @unique
   type      LevelType
-  tutorial  Boolean   @default(false)
+  tutorial  Boolean?  @default(false)
   statement String
   input     String
   output    String
